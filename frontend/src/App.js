@@ -36,12 +36,12 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1 className="title">🤖 Was That Rude?</h1>
+      <h1 className="title"> Was That Rude?</h1>
       <textarea
         className="comment-box"
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        placeholder="Type a comment to analyze..."
+        placeholder="Type to know..."
         rows={5}
       />
       <button className="analyze-btn" onClick={handleSubmit} disabled={loading}>
@@ -53,21 +53,20 @@ function App() {
     {result.error ? (
       <p className="error-msg">{result.error}</p>
     ) : (
-      <div className="result-row">
-        {Object.entries(result).map(([label, value]) => (
-          <div
-            key={label}
-            className={`result-bar ${value ? "bad" : "good"}`}
-          >
-            <span className="label">
-              {label
-                .replace("_", " ")
-                .replace(/\b\w/g, (c) => c.toUpperCase())}
-            </span>
-            <span className="value">{value ? "Yes" : "No"}</span>
-          </div>
-        ))}
-      </div>
+     <div className="result-row">
+  {Object.entries(result).map(([label, value]) => (
+    <div
+      key={label}
+      className={`result-pill ${value ? "bad" : "good"}`}
+    >
+      <span className="pill-label">
+        {label.replace("_", " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+      </span>
+      <span className="pill-value">{value ? "Yes" : "No"}</span>
+    </div>
+  ))}
+</div>
+
     )}
   </div>
 )}
